@@ -1,4 +1,4 @@
-package Tests;
+package test;
 
 import com.codeborne.selenide.Condition;
 import org.junit.jupiter.api.Test;
@@ -34,23 +34,23 @@ public class TestWithSteps extends BaseTest {
 
     @Test
     void testIssueSearchWithLambdaStepsNoHardCode() {
-        step("Открываем страницу" + BASE_URL, () -> {
+        step("Открываем страницу " + BASE_URL, () -> {
             open(BASE_URL);
         });
-        step("Ищем репозиторий" + REPOSITORY, (s) -> {
+        step("Ищем репозиторий " + REPOSITORY, (s) -> {
             s.parameter("repository", REPOSITORY);
             $(".header-search-input").click();
             $(".header-search-input").sendKeys(REPOSITORY);
             $(".header-search-input").submit();
         });
-        step("Переходим в репозиторий" + REPOSITORY, (s) -> {
+        step("Переходим в репозиторий " + REPOSITORY, (s) -> {
             s.parameter("repository", REPOSITORY);
             $(By.linkText(REPOSITORY)).click();
         });
         step("Открываем Issues", () -> {
             $(withText("Issues")).click();
         });
-        step("Проверяем, что существует Issues с номером" + ISSUE_NUMBER, () -> {
+        step("Проверяем, что существует Issues с номером " + ISSUE_NUMBER, () -> {
             $(withText("#" + ISSUE_NUMBER)).should(Condition.exist);
         });
     }
